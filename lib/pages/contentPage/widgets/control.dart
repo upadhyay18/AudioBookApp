@@ -21,6 +21,17 @@ class _AudioControlState extends State<AudioControl> {
       child: Container(
           child: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Consumer<AudioBookPlayer>(
+                  builder: (_, myBookModel, child) =>
+                      Text(_durationToString(myBookModel.position!))),
+              Consumer<AudioBookPlayer>(
+                  builder: (_, myBookModel, child) =>
+                      Text(_durationToString(myBookModel.totDuration!))),
+            ],
+          ),
           Container(
             width: MediaQuery.of(context).size.width - 60,
             child: SliderTheme(
@@ -60,6 +71,11 @@ class _AudioControlState extends State<AudioControl> {
       )),
     );
   }
+}
+
+_durationToString(Duration duration) {
+  String sDuration = duration.toString().split('.').first.padLeft(8, "0");
+  return sDuration;
 }
 
 class SmallButton extends StatelessWidget {

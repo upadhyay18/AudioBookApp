@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:bookapp/models/book.dart';
+import 'package:bookapp/pages/contentPage/textbook.dart';
+import 'package:bookapp/pages/contentPage/txtWidget/file_download.dart';
 import 'package:flutter/material.dart';
-import '../../contentPage/textbook.dart';
 
 class BookCover extends StatelessWidget {
   final Book book;
@@ -33,9 +35,9 @@ class BookCover extends StatelessWidget {
               left: 240,
               bottom: 20,
               child: GestureDetector(
-                onTap: () => {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => TextBook(book)))
+                onTap: () async {
+                  final File file = await PdfDownload.loadNetwork(book.textUrl);
+                  openPDF(context, file);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(8),
@@ -59,3 +61,6 @@ class BookCover extends StatelessWidget {
     );
   }
 }
+
+void openPDF(BuildContext context, File file) => Navigator.of(context)
+    .push(MaterialPageRoute(builder: (context) => TextBook(file)));

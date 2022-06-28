@@ -9,7 +9,7 @@ class AudioBookPlayer with ChangeNotifier {
   AudioBookPlayer(this.url) {
     initAudio();
   }
-  AudioPlayer audioPlayer = AudioPlayer();
+  static AudioPlayer audioPlayer = AudioPlayer();
   initAudio() {
     // duration change
     audioPlayer.onDurationChanged.listen((updateDuration) {
