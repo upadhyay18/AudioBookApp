@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "913738944441",
+    "firebase_url": "https://sangrah-18-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "sangrah-18",
+    "storage_bucket": "sangrah-18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913738944441:android:36918cf22691bbccedf068",
+        "android_client_info": {
+          "package_name": "com.sangrah.bookapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913738944441-v5qdqm7eom038v7o5fub948ffjs0cd84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOUwvvAkGGQDJ3ntUWkYNZnxfWfqYTNHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913738944441-v5qdqm7eom038v7o5fub948ffjs0cd84.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
