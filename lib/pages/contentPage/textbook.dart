@@ -1,48 +1,32 @@
-import 'package:bookapp/models/book.dart';
+import 'dart:io';
 import 'package:bookapp/pages/constants/color.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as HTTP;
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class TextBook extends StatefulWidget {
-  final Book book;
-  TextBook(this.book, {Key? key}) : super(key: key);
+  final File file;
+  TextBook(this.file, {Key? key}) : super(key: key);
   @override
-  State<TextBook> createState() => _TextBookState(book);
+  State<TextBook> createState() => _TextBookState(file);
 }
 
 class _TextBookState extends State<TextBook> {
-  final Book book;
-  _TextBookState(this.book) {
+  final File file;
+  _TextBookState(this.file) {
     //Downloader.loadFileNetWork(book.textUrl);
   }
   @override
   // ignore: dead_code
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: _buildAppBar(context),
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Container(
-              height: MediaQuery.of(context).size.height - 60,
-              width: MediaQuery.of(context).size.width - 40,
-              child: StreamBuilder(
-                stream: HTTP
-                    .get(Uri.parse(book.textUrl))
-                    .asStream()
-                    .map((event) => Text(event.body)),
-                builder: (context, snapshots) {
-                  if (snapshots.connectionState == ConnectionState.waiting)
-                    return CupertinoActivityIndicator();
-                  else if (snapshots.hasError)
-                    return Text("Something Went wrong");
-                  else if (snapshots.hasData)
-                    return Text(snapshots.data.toString());
-                  return CupertinoActivityIndicator();
-                },
-              )),
-        ));
+      appBar: _buildAppBar(context),
+      backgroundColor: Colors.white,
+      body: PDFView(
+        filePath: file.path,
+        swipeHorizontal: true,
+        nightMode: true,
+      ),
+    );
   }
 }
 
